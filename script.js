@@ -1,68 +1,69 @@
-/* Sample Images */
+// Sample Images
 
-.samples {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
+const sampleCards = document.querySelectorAll(".sample-card");
 
-.samples h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+sampleCards.forEach(card => {
 
-.sample-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
+    card.addEventListener("click", function () {
 
-.sample-card {
-    background: #f8fafc;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: 0.3s;
-}
+        const imageURL = this.dataset.image;
 
-.sample-card:hover {
-    transform: translateY(-5px);
-    border-color: #2563eb;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
+        const img = new Image();
 
-.sample-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-}
+        img.crossOrigin = "anonymous";
 
-.sample-card p {
-    text-align: center;
-    padding: 12px;
-    font-weight: bold;
-    color: #374151;
-}
+        img.onload = function () {
 
+            const maxWidth = 900;
+            const maxHeight = 600;
 
-/* Responsive Sample Images */
+            let width = img.width;
+            let height = img.height;
 
-@media (max-width: 850px) {
+            const scale = Math.min(
+                maxWidth / width,
+                maxHeight / height,
+                1
+            );
 
-    .sample-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+            width = Math.round(width * scale);
+            height = Math.round(height * scale);
 
-}
+            canvas.width = width;
+            canvas.height = height;
 
-@media (max-width: 500px) {
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
-    .sample-grid {
-        grid-template-columns: 1fr;
-    }
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
 
-}
+            canvas.style.display = "block";
+            placeholder.style.display = "none";
+
+            resetColor();
+
+        };
+
+        img.onerror = function () {
+
+            alert(
+                "Unable to load sample image. Please check your internet connection."
+            );
+
+        };
+
+        img.src = imageURL;
+
+    });
+
+});
