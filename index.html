@@ -9,88 +9,198 @@
 
 <body>
 
-    <header>
-        <h1>Color Detection in Image</h1>
-        <p>Upload an image and click on any point to detect its color</p>
-    </header>
+<header>
+    <h1>Color Detection in Image</h1>
+    <p>Upload an image or select a sample image to detect colors</p>
+</header>
 
-    <main class="container">
+<main class="container">
 
-        <section class="upload-section">
-            <label for="imageInput" class="upload-btn">
-                📁 Upload Image
-            </label>
-            <input type="file" id="imageInput" accept="image/*">
+    <!-- Upload Section -->
+    <section class="upload-section">
 
-            <button id="resetBtn" class="reset-btn">
-                Reset
+        <label for="imageInput" class="upload-btn">
+            📁 Upload Image
+        </label>
+
+        <input type="file" id="imageInput" accept="image/*">
+
+        <button id="resetBtn" class="reset-btn">
+            Reset
+        </button>
+
+    </section>
+
+
+    <!-- Sample Images -->
+    <section class="samples">
+
+        <h2>Try Sample Images</h2>
+
+        <div class="sample-grid">
+
+            <div class="sample-card"
+                 data-image="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=400&q=80"
+                     alt="Nature Sample">
+
+                <p>🌄 Nature</p>
+
+            </div>
+
+
+            <div class="sample-card"
+                 data-image="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=400&q=80"
+                     alt="Ocean Sample">
+
+                <p>🌊 Ocean</p>
+
+            </div>
+
+
+            <div class="sample-card"
+                 data-image="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=400&q=80"
+                     alt="Flowers Sample">
+
+                <p>🌸 Flowers</p>
+
+            </div>
+
+
+            <div class="sample-card"
+                 data-image="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=400&q=80"
+                     alt="Sky Sample">
+
+                <p>🌌 Sky</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Workspace -->
+    <section class="workspace">
+
+        <div class="image-area">
+
+            <h2>Image</h2>
+
+            <div class="canvas-container">
+
+                <canvas id="canvas"></canvas>
+
+                <div id="placeholder">
+
+                    <span>🖼️</span>
+
+                    <p>
+                        Upload an image or select a sample image
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p class="instruction">
+                Click anywhere on the image to detect the color
+            </p>
+
+        </div>
+
+
+        <!-- Result -->
+        <div class="result-area">
+
+            <h2>Detected Color</h2>
+
+            <div id="colorPreview"
+                 class="color-preview">
+            </div>
+
+
+            <div class="color-name">
+
+                <span>Color Name</span>
+
+                <strong id="colorName">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div class="details">
+
+                <div class="detail-box">
+
+                    <span>HEX</span>
+
+                    <strong id="hexValue">
+                        ---
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>RGB</span>
+
+                    <strong id="rgbValue">
+                        ---
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>Position</span>
+
+                    <strong id="position">
+                        ---
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button id="copyBtn"
+                    class="copy-btn">
+
+                📋 Copy Color
+
             </button>
-        </section>
 
-        <section class="workspace">
+            <p id="copyMessage"></p>
 
-            <div class="image-area">
-                <h2>Image</h2>
+        </div>
 
-                <div class="canvas-container">
-                    <canvas id="canvas"></canvas>
+    </section>
 
-                    <div id="placeholder">
-                        <span>🖼️</span>
-                        <p>Upload an image to begin</p>
-                    </div>
-                </div>
+</main>
 
-                <p class="instruction">
-                    Click anywhere on the image to detect the color
-                </p>
-            </div>
 
-            <div class="result-area">
-                <h2>Detected Color</h2>
+<footer>
 
-                <div id="colorPreview" class="color-preview"></div>
+    <p>
+        DLT Mini Project | Color Detection in Image
+    </p>
 
-                <div class="color-name">
-                    <span>Color Name</span>
-                    <strong id="colorName">---</strong>
-                </div>
+</footer>
 
-                <div class="details">
 
-                    <div class="detail-box">
-                        <span>HEX</span>
-                        <strong id="hexValue">---</strong>
-                    </div>
-
-                    <div class="detail-box">
-                        <span>RGB</span>
-                        <strong id="rgbValue">---</strong>
-                    </div>
-
-                    <div class="detail-box">
-                        <span>Position</span>
-                        <strong id="position">---</strong>
-                    </div>
-
-                </div>
-
-                <button id="copyBtn" class="copy-btn">
-                    📋 Copy Color
-                </button>
-
-                <p id="copyMessage"></p>
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer>
-        <p>DLT Mini Project | Color Detection in Image</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
